@@ -1,0 +1,69 @@
+.main-sec{
+    width: 100%;
+    margin-top: 2px;
+}
+
+.card{
+    width: 350px;
+    margin: 15px;
+}
+
+.mrow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.inner{
+    width: 50%;
+    margin: 25px;
+}
+
+.mbtn{
+    width: 150px;
+    height: 50px;
+    border-radius: 0;
+}
+
+.mform{
+    width: 50%;
+}
+
+@media(max-width:852px){
+    .inner{
+        width: 100%;
+    }
+
+    .sec{
+        display: none;
+    }
+
+    .mrow{
+        display: flex;
+        flex-direction: column;
+    }
+    .mform{
+        width: 90%;
+    }
+}
+
+
+
+/* Profile Sections */
+
+.pro-pic{
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+
+.profile-head{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
