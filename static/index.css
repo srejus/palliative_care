@@ -20,6 +20,13 @@
     margin: 25px;
 }
 
+.mid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .mbtn{
     width: 150px;
     height: 50px;
