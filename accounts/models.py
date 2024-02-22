@@ -12,7 +12,7 @@ class Account(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15,null=True,blank=True)
-    user_type = models.CharField(max_length=20,default='ELDER')
+    user_type = models.CharField(max_length=20,default='ELDER',choices=USER_TYPE_CHOICES)
     address = models.CharField(max_length=250,null=True,blank=True)
     place = models.CharField(max_length=150,null=True,blank=True)
 

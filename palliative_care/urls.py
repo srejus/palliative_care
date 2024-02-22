@@ -8,4 +8,5 @@ urlpatterns = [
     path('care-worker/',include('care_worker.urls')),
     path('elders/',include('elders.urls')),
     path('hospital/',include('hospital.urls')),
+    path('medical_worker/',include('medical_worker.urls')),
 ]

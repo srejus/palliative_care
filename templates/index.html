@@ -57,7 +57,7 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/#why-us">Why We Care</a></li>
-          <li><a href="/#testimonials">Testimonials</a></li><li><a href="/account/">Profile</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li><li><a href="/accounts/profile">Profile</a></li>
           
         </ul>
       </nav><!-- .navbar -->
@@ -146,6 +146,13 @@
 
 
   </main><!-- End #main -->
+
+  {% if msg %}
+  <script>
+    alert('{{msg}}');
+    window.location.href='/';
+  </script>
+  {% endif %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

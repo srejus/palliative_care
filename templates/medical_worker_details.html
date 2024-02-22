@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | Book an Appointment</title>
+  <title>We Care | Care Worker {{worker.full_name}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -37,6 +37,8 @@
   <!-- Template Main CSS File -->
   <link href="{% static 'main.css' %}" rel="stylesheet">
   <link href="{% static 'index.css' %}" rel="stylesheet">
+
+  <script defer src="{% static 'js/utils.js' %}"></script>
 
   
 </head>
@@ -74,29 +76,27 @@
   <main id="main" style="height:150px;">
   </main><!-- End #main -->
 <br><br>
-<h1 style="text-align: center;font-weight: 800;">Book Hospital Appointment</h1>
-  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
-    <br>
-    <form action="" method="POST" class="mform">
-      {% csrf_token %}
-      <input type="text" class="form-control" placeholder="Patient Name*" name="name" required><br>
-      <input type="number" class="form-control" placeholder="Patient's Age" name="age" required><br>
-      <input type="number" class="form-control" placeholder="Contact Number" name="phone" required><br>
-      <label for="purpose">Appointment Purpose</label>
-      <select name="purpose" class="form-control">
-        <option value="scan">Scanning</option>
-        <option value="regular_checkup">Regular Checkup</option>
-        <option value="other">Other</option>
-      </select><br>
-      <label for="scheduled_at">Appointment Scheduled At</label>
-      <input type="datetime-local" name="scheduled_at" class="form-control">
-      <br>
-      <textarea name="note" style="resize: none;height: 150px;" 
-      class="form-control" cols="30" rows="10" placeholder="Any Notes..."></textarea><br>
-      <input type="submit" value="Book an Appointment" class="form-control btn btn-primary">
-    </form>
 
+<div class="profile-head">
+  <img src="/static/images/{{worker.profile_picture}}" class="pro-pic" alt="">
+  <br>
+  <h3><b>{{worker.full_name}}</b></h3><br>
+  <a href="#" class="btn btn-primary" 
+            style="float: right;margin-top: -25px;" 
+            onclick="hireRequestMedicalWorker('{{worker.id}}')">Send Hiring Request</a>
+  <div style="width: 100%;padding: 25px;">
+    <hr>
+    <p>Yrs of Exp : {{worker.yrs_of_exp}}</p>
+    <p>Phone : {{worker.phone}}</p>
+    <p>Email : {{worker.email}}</p>
+    <p style="margin-right: 25px;">{{worker.description}}</p>
   </div>
+</div>
+
+
+  
+
+  
   <br><br>
   <br><br>
 

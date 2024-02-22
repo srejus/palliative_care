@@ -6,12 +6,18 @@ from django.http import HttpResponse
 
 from care_worker.models import CareWorker
 from hospital.models import Appointment
+from medical_worker.models import MedicalWorker
+from accounts.models import Account
 
 
 # Create your views here.
 @method_decorator(login_required, name='dispatch')
 class ElderHomeView(View):
     def get(self,request):
+        acc = Account.objects.get(user=request.user)
+        if acc.user_type != 'ELDER':
+            msg = "Only Elder user can access this page!"
+            return redirect(f"/?msg={msg}")
         return render(request,'elders/elder_home.html')
     
 
@@ -26,9 +32,27 @@ class FindCareWorkerView(View):
     
 
 @method_decorator(login_required, name='dispatch')
+class FindMedicalWorkerView(View):
+    def get(self,request,id=None):
+        medical_workers = MedicalWorker.objects.filter(is_approved=True)
+        if id:
+            worker = medical_workers.get(id=id)
+            return render(request,'medical_worker_details.html',{'worker':worker})
+        return render(request,'find_health_worker.html',{'care_workers':medical_workers})
+
+    
+
+@method_decorator(login_required, name='dispatch')
 class SendHiringRequestToCareWorkerView(View):
     def get(self,request,id):
         print("----Sending Request to Hiring Care Worker-------")
+        return HttpResponse("Request sent successfully!")
+    
+
+@method_decorator(login_required, name='dispatch')
+class SendHiringRequestToMedcialWorkerView(View):
+    def get(self,request,id):
+        print("----Sending Request to Hiring Medical Worker-------")
         return HttpResponse("Request sent successfully!")
     
 

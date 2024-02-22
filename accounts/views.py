@@ -67,3 +67,9 @@ class SignupView(View):
 
         return redirect('/accounts/login/')
         
+
+@method_decorator(login_required, name='dispatch')
+class ProfileView(View):
+    def get(self,request):
+        acc = Account.objects.get(user=request.user)
+        return render(request,'profile.html',{'acc':acc})
