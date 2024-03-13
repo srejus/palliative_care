@@ -15,8 +15,9 @@ CareWorker
 
 
 HealthWorker
--> Home page
--> View and Respond to hiring Requests
+-> Home page - DONE
+-> View and Respond to hiring Requests - DONE
 -> Manage Emergency Requests
+-> Send notification when request status change
 -> Record elder's health status
 -> profile edit option

@@ -14,6 +14,6 @@ class IndexView(View):
             if acc.user_type ==  Account.CARE_WORKER:
                 return redirect("/care-worker/")
             if acc.user_type == Account.HEALTH_WORKER:
-                return redirect("") # set the url for health worker
+                return redirect("/health-worker/")
             
         return render(request,'index.html',{'msg':msg})
