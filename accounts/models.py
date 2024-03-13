@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Account(models.Model):
+    ELDER = 'ELDER'
+    CARE_WORKER = 'CARE_WORKER'
+    HEALTH_WORKER = 'HEALTH_WORKER'
     USER_TYPE_CHOICES = (
         ('ELDER','ELDER'),
         ('CARE_WORKER','CARE_WORKER'),

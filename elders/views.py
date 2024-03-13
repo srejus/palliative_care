@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse
 
-from care_worker.models import CareWorker
+from care_worker.models import CareWorker,RequestCwHiring
 from hospital.models import Appointment
 from medical_worker.models import MedicalWorker
 from accounts.models import Account
@@ -45,7 +45,9 @@ class FindMedicalWorkerView(View):
 @method_decorator(login_required, name='dispatch')
 class SendHiringRequestToCareWorkerView(View):
     def get(self,request,id):
-        print("----Sending Request to Hiring Care Worker-------")
+        cw = CareWorker.objects.get(id=id)
+        acc = Account.objects.get(user=request.user)
+        RequestCwHiring.objects.create(user=acc,cw=cw)
         return HttpResponse("Request sent successfully!")
     
 

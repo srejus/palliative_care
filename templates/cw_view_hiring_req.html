@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care</title>
+  <title>We Care | View Hiring Requests</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,6 +38,8 @@
   <link href="{% static 'main.css' %}" rel="stylesheet">
   <link href="{% static 'index.css' %}" rel="stylesheet">
 
+  <script defer src="{% static 'js/utils.js' %}"></script>
+
   
 </head>
 
@@ -59,10 +61,9 @@
           <li><a href="/#why-us">Why We Care</a></li>
           <li><a href="/#testimonials">Testimonials</a></li><li><a href="/accounts/profile">Profile</a></li>
           
+          <!-- <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a> -->
         </ul>
       </nav><!-- .navbar -->
-
-      <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -72,87 +73,45 @@
   <!-- ======= Hero Section ======= -->
   
 
-  <main id="main">
-      <!-- ======= Hero Section ======= -->
-  <section id="hero" 
-  class="hero d-flex align-items-center section-bg"
-  style="background-image: url('https://www.aplaceformom.com/image/web-lighthouse/prod/Palliative-Care-at-Home1-scaled.jpg?t=default');"
-  >
-   <div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
-    <br><br><br><br><br><br><br><br>
-      <h1 style="text-align: center;font-weight: 700;font-size: 55px;color: black;">Care Means We Care...</h1><br>
-      <button class="btn btn-danger" style="width: 200px;">Learn More</button>
-   </div>
-  </section><!-- End Hero Section -->
-
-  <main id="main">
-
-   
-
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us section-bg" style="background-color: white;">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="why-box">
-              <h3>Why Choose We Care?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
-              </p>
-              <div class="text-center">
-                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Why Box -->
-
-          <div class="col-lg-8 d-flex align-items-center">
-            <div class="row gy-4">
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center" onclick="window.location.href='/elders/'">
-                  <br>
-                  <i class="bi bi-person"></i>
-                  <h4>Elder Login</h4>
-                  <p>Login from here to book appointments, hire care workers or find health workers</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center" onclick="window.location.href='/care-worker/'">
-                  <i class="bi bi-plus"></i>
-                  <h4>Care Worker Login</h4>
-                  <p>Manage Your Work Request, emergencies and find new oppertunities</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-hospital"></i>
-                  <h4>Health Worker Login</h4>
-                  <p>Manage your Patients and emergencies from here</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
-
+  <main id="main" style="height:150px;">
   </main><!-- End #main -->
+<br><br>
+<h1 style="text-align: center;font-weight: 800;">View Hiring Request</h1>
 
-  {% if msg %}
-  <script>
-    alert('{{msg}}');
-    window.location.href='/';
-  </script>
-  {% endif %}
+
+<!-- Candidate Listing -->
+{% for req in reqs %}
+  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
+
+    <div class="card" style="width: 80%;">
+      
+      <div class="card-body" style="display: flex;flex-direction: row;">
+        
+        <div style="width: 100%;">
+          <h5 class="card-title" style="font-weight: 700;">Request From : {{req.user.full_name}}</h5>
+          <p class="card-text">{{req.created_at}}</p>
+          <!-- <p class="card-text">4.0 <i class="fa fa-star"></i></p> -->
+          <p class="card-text">CURRENT STATUS : {{req.status}}</p>
+          <br>
+          <div class="mrow" style="width: auto;justify-content: flex-end;">
+            <a href="/care-worker/hiring-requests/reject/{{req.id}}" class="btn btn-danger" style="float: right;margin-top: -25px;margin-right: 15px;">Reject</a>
+            <a href="#" class="btn btn-primary" 
+            style="float: right;margin-top: -25px;" 
+            onclick="window.location.href='/care-worker/hiring-requests/accept/{{req.id}}'">Accept</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <!-- Candidate Listing -->
+
+
+  
+
+  
+  <br><br>
+  <br><br>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

@@ -14,3 +14,18 @@ class CareWorker(models.Model):
     is_approved = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+
+
+class RequestCwHiring(models.Model):
+    REQ_STATUS = (
+        ('SENT','SENT'),
+        ('ACCEPTED','ACCEPTED'),
+        ('REJECTED','REJECTED'),
+    )
+    user = models.ForeignKey(Account,on_delete=models.CASCADE,related_name='cw_requested_user')
+    cw = models.ForeignKey(CareWorker,on_delete=models.CASCADE,related_name='requested_cw')
+    status = models.CharField(max_length=25,default='SENT',choices=REQ_STATUS)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user.full_name)
