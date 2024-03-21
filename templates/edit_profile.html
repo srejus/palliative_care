@@ -6,9 +6,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care</title>
+  <title>We Care | Edit Profile {{acc.full_name}}</title>
   <meta content="" name="description">
-  <meta content="" name="keywords">
+<meta content="" name="keywords">
 
   <!-- Favicons -->
   <link href="{% static 'img/favicon.png' %}" rel="icon">
@@ -38,6 +38,8 @@
   <link href="{% static 'main.css' %}" rel="stylesheet">
   <link href="{% static 'index.css' %}" rel="stylesheet">
 
+  <script defer src="{% static 'js/utils.js' %}"></script>
+
   
 </head>
 
@@ -57,18 +59,11 @@
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/#why-us">Why We Care</a></li>
-          <li><a href="/#testimonials">Testimonials</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li><li><a href="/accounts/profile">Profile</a></li>
           
-          {% if request.user.is_authenticated %}
-          <li><a href="/accounts/profile">Profile</a></li>
-          {% else %}
-          <li><a href="/accounts/login/">Login</a></li>
-          {% endif %}
-          
+          <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
         </ul>
       </nav><!-- .navbar -->
-
-      <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -78,87 +73,47 @@
   <!-- ======= Hero Section ======= -->
   
 
-  <main id="main">
-      <!-- ======= Hero Section ======= -->
-  <section id="hero" 
-  class="hero d-flex align-items-center section-bg"
-  style="background-image: url('https://www.aplaceformom.com/image/web-lighthouse/prod/Palliative-Care-at-Home1-scaled.jpg?t=default');"
-  >
-   <div style="width: 100%;display: flex;flex-direction: column;align-items: center;">
-    <br><br><br><br><br><br><br><br>
-      <h1 style="text-align: center;font-weight: 700;font-size: 55px;color: black;">Care Means We Care...</h1><br>
-      <button class="btn btn-danger" style="width: 200px;">Learn More</button>
-   </div>
-  </section><!-- End Hero Section -->
-
-  <main id="main">
-
-   
-
-    <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us section-bg" style="background-color: white;">
-      <div class="container" data-aos="fade-up">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="why-box">
-              <h3>Why Choose We Care?</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
-              </p>
-              <div class="text-center">
-                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
-              </div>
-            </div>
-          </div><!-- End Why Box -->
-
-          <div class="col-lg-8 d-flex align-items-center">
-            <div class="row gy-4">
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center" onclick="window.location.href='/elders/'">
-                  <br>
-                  <i class="bi bi-person"></i>
-                  <h4>Elder Care</h4>
-                  <p>Elders can get services from hospitals, care workers and health care from our Platform</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center" onclick="window.location.href='/care-worker/'">
-                  <i class="bi bi-plus"></i>
-                  <h4>Care Worker</h4>
-                  <p>Manage Your Work Request, emergencies and find new oppertunities</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-              <div class="col-xl-4" data-aos="fade-up" data-aos-delay="400">
-                <div class="icon-box d-flex flex-column justify-content-center align-items-center">
-                  <i class="bi bi-hospital"></i>
-                  <h4>Health Worker</h4>
-                  <p>Manage your Patients and emergencies from here</p>
-                </div>
-              </div><!-- End Icon Box -->
-
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Why Us Section -->
-
-
+  <main id="main" style="height:150px;">
   </main><!-- End #main -->
+<br><br>
+<div style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+  
+  <div class="profile-head" style="display: flex;flex-direction: row;width: 70%;">
+    <!-- <div style="margin-left: 25px;">
+      <img src="https://cdn-icons-png.freepik.com/512/3177/3177440.png" class="pro-pic" style="width: 100%;" alt="">
+      <br>
+      <h3 style="text-align: center;margin-top: 15px;"><b>{{acc.full_name}}</b></h3><br>
+    </div> -->
+    <!-- <a href="#" class="btn btn-primary" 
+      style="float: right;margin-top: -25px;" 
+      onclick="window.location.href='/accounts/profile/edit'">Edit Profile</a> -->
+    <div style="width: 100%;padding: 25px;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+      <h2 style="text-align: center;"><b>Edit Profile</b></h2><br>
+      <form action="" method="POST" class="mform">
+        {% csrf_token %}
+        <label for="">Full Name</label>
+        <input  value="{{acc.full_name}}" type="text" placeholder="Enter Fullname...*" required class="form-control" name="fullname"><br>
+        <label for="">Email</label>
+        <input  value="{{acc.email}}" type="email" placeholder="Enter Email...*" required class="form-control" name="email"><br>
+        <label for="">Phone</label>
+        <input  value="{{acc.phone}}" type="number" placeholder="Enter Phone Number...*" required class="form-control" name="phone"><br>
+        <label for="">Address</label>
+        <input  value="{{acc.address}}" type="text" placeholder="Enter Address...*" required class="form-control" name="address"><br>
+        <label for="">Place</label>
+        <input  value="{{acc.place}}" type="text" placeholder="Enter Your Place...*" required class="form-control" name="place"><br>
+        <input type="submit" value="Update Pofile" required class="form-control btn btn-primary"><br>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>
 
-  {% if msg %}
-  <script>
-    alert('{{msg}}');
-    window.location.href='/';
-  </script>
-  {% endif %}
+
+  
+
+  
+  <br><br>
+  <br><br>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

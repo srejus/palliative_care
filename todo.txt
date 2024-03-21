@@ -5,13 +5,13 @@ Elder
 -> Book Hospital Appointment - DONE
 -> Send Emergency Req 
 -> Notification Sending
--> Profile edit option
+-> Profile edit option - DONE
 
 CareWorker
 -> Home page - DONE
 -> View and Respond(Accept/Reject) to Hiring Requests - DONE
 -> Send notification when request status change
--> Profile Edit option
+-> Profile Edit option - DONE
 
 
 HealthWorker
@@ -20,4 +20,10 @@ HealthWorker
 -> Manage Emergency Requests
 -> Send notification when request status change
 -> Record elder's health status
--> profile edit option
+-> profile edit option - DONE
+
+
+
+
+-> Add Logout option on all Dashboard/pages
+-> Add option to select user_type on signup page

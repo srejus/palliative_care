@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | Care Worker {{acc.full_name}}</title>
+  <title>We Care | Profile {{acc.full_name}}</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -79,37 +79,31 @@
 <div style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
   
   <div class="profile-head" style="display: flex;flex-direction: row;width: 70%;">
-    <div style="margin-left: 25px;">
+    <!-- <div style="margin-left: 25px;">
       <img src="https://cdn-icons-png.freepik.com/512/3177/3177440.png" class="pro-pic" style="width: 100%;" alt="">
       <br>
       <h3 style="text-align: center;margin-top: 15px;"><b>{{acc.full_name}}</b></h3><br>
-    </div>
+    </div> -->
     <!-- <a href="#" class="btn btn-primary" 
       style="float: right;margin-top: -25px;" 
       onclick="window.location.href='/accounts/profile/edit'">Edit Profile</a> -->
-    <div style="width: 100%;padding: 25px;">
-      <table style="margin-top: -55px;">
-        <tr>
-          <td style="width: 150px;">Full Name</td>
-          <td>{{acc.full_name}}</td>
-        </tr>
-        <tr>
-          <td style="width: 150px;">Phone</td>
-          <td>{{acc.phone}}</td>
-        </tr>
-        <tr>
-          <td style="width: 150px;">Email</td>
-          <td>{{acc.email}}</td>
-        </tr>
-        <tr>
-          <td style="width: 150px;">Address</td>
-          <td>{{acc.address}}</td>
-        </tr>
-        <tr>
-          <td style="width: 150px;">Location</td>
-          <td>{{acc.place}}</td>
-        </tr>
-      </table>
+    <div style="width: 100%;padding: 25px;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+      <h2 style="text-align: center;"><b>Profile</b></h2><br>
+      <form action="" class="mform">
+        {% csrf_token %}
+        <label for="">Full Name</label>
+        <input readonly value="{{acc.full_name}}" type="text" placeholder="Enter Fullname...*" required class="form-control" name="fullname"><br>
+        <label for="">Email</label>
+        <input readonly value="{{acc.email}}" type="email" placeholder="Enter Email...*" required class="form-control" name="email"><br>
+        <label for="">Phone</label>
+        <input readonly value="{{acc.phone}}" type="number" placeholder="Enter Phone Number...*" required class="form-control" name="phone"><br>
+        <label for="">Address</label>
+        <input readonly value="{{acc.address}}" type="text" placeholder="Enter Address...*" required class="form-control" name="address"><br>
+        <label for="">Place</label>
+        <input readonly value="{{acc.place}}" type="text" placeholder="Enter Your Place...*" required class="form-control" name="place"><br>
+        <input type="button" onclick="window.location.href='/accounts/profile/edit'" value="Edit Pofile" required class="form-control btn btn-primary"><br>
+        <br>
+      </form>
     </div>
   </div>
 </div>

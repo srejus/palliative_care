@@ -19,7 +19,7 @@ class LoginView(View):
     def post(self,request):
         username = request.POST.get("username")
         password = request.POST.get("password")
-        next = request.GET.get("next")
+        next = request.GET.get("next","/")
 
         
         user = authenticate(request, username=username, password=password)
@@ -75,3 +75,26 @@ class ProfileView(View):
     def get(self,request):
         acc = Account.objects.get(user=request.user)
         return render(request,'profile.html',{'acc':acc})
+    
+
+@method_decorator(login_required, name='dispatch')
+class EditProfileView(View):
+    def get(self,request):
+        acc = Account.objects.get(user=request.user)
+        return render(request,'edit_profile.html',{'acc':acc})
+    
+    def post(self,request):
+        full_name = request.POST.get("fullname")
+        phone = request.POST.get("phone")
+        email = request.POST.get("email")
+        place = request.POST.get("place")
+        address = request.POST.get("address")
+
+        acc = Account.objects.get(user=request.user)
+        acc.full_name = full_name
+        acc.email = email
+        acc.place = place
+        acc.address = address
+        acc.phone = phone
+        acc.save()
+        return redirect("/accounts/profile")
