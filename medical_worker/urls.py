@@ -6,4 +6,5 @@ urlpatterns = [
     path('hiring-requests',HwHiringReqView.as_view()),
     path('hiring-requests/accept/<int:id>',HwAcceptReqView.as_view()),
     path('hiring-requests/reject/<int:id>',HwRejectReqView.as_view()),
+    path('manage-emergency',HwManageEmergencyView.as_view()),
 ]

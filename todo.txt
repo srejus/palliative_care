@@ -3,8 +3,8 @@ Elder
 -> View and Request CareWorker - DONE
 -> View and Request HealthWorker - DONE
 -> Book Hospital Appointment - DONE
--> Send Emergency Req 
--> Notification Sending
+-> Send Emergency Req - DONE
+-> Notification Sending - DONE
 -> Profile edit option - DONE
 
 CareWorker
@@ -17,7 +17,7 @@ CareWorker
 HealthWorker
 -> Home page - DONE
 -> View and Respond to hiring Requests - DONE
--> Manage Emergency Requests
+-> Manage Emergency Requests(View) - DONE
 -> Send notification when request status change
 -> Record elder's health status
 -> profile edit option - DONE

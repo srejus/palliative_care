@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 
 from .models import *
 from accounts.models import Account
+from hospital.models import Emergency
 
 # Create your views here.
 @method_decorator(login_required,name='dispatch')
@@ -44,3 +45,10 @@ class HwRejectReqView(View):
     def get(self,request,id):
         RequestHwHiring.objects.filter(id=id).update(status='REJECTED')
         return redirect("/health-worker/hiring-requests")
+    
+
+@method_decorator(login_required,name='dispatch')
+class HwManageEmergencyView(View):
+    def get(self,request):
+        reqs = Emergency.objects.all().order_by('-id')
+        return render(request,'hw_manage_emergency.html',{'reqs':reqs})
