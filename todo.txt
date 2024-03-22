@@ -29,5 +29,5 @@ HealthWorker
 
 
 
--> Add Logout option on all Dashboard/pages
+-> Add Logout option on all Dashboard/pages-DONE
 -> Add option to select user_type on signup page - DONE
