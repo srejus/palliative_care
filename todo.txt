@@ -30,4 +30,4 @@ HealthWorker
 
 
 -> Add Logout option on all Dashboard/pages
--> Add option to select user_type on signup page
+-> Add option to select user_type on signup page - DONE

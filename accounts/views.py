@@ -44,6 +44,7 @@ class SignupView(View):
         email = request.POST.get("email")
         place = request.POST.get("place")
         address = request.POST.get("address")
+        user_type = request.POST.get("user_type")
 
         # exp = request.POST.get("exp")
         # if exp == '':
@@ -65,7 +66,7 @@ class SignupView(View):
         
         user = User.objects.create_user(username=username,email=email,password=password1)
         acc = Account.objects.create(user=user,full_name=full_name,phone=phone,
-                                     email=email,address=address,place=place)
+                                     email=email,address=address,place=place,user_type=user_type)
 
         return redirect('/accounts/login/')
         
@@ -98,3 +99,9 @@ class EditProfileView(View):
         acc.phone = phone
         acc.save()
         return redirect("/accounts/profile")
+    
+
+class LogoutView(View):
+    def get(self,request):
+        logout(request)
+        return redirect("/accounts/login/")
