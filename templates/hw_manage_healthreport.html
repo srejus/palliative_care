@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | View Hiring Requests</title>
+  <title>We Care | Manage Health Report</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -76,12 +76,14 @@
   <main id="main" style="height:150px;">
   </main><!-- End #main -->
 <br><br>
-<h1 style="text-align: center;font-weight: 800;">View Hiring Request</h1>
+<h1 style="text-align: center;font-weight: 800;">Manage Health Records</h1>
+<button class="btn btn-danger" onclick="window.location.href='/health-worker/manage-health-report/add'"
+ style="float: right;margin: 55px;"><i class="fa fa-plus"></i>&nbsp;&nbsp; Add New</button>
 
 
 <!-- Candidate Listing -->
-{% if reqs %}
-{% for req in reqs %}
+{% if records %}
+{% for req in records %}
   <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
 
     <div class="card" style="width: 80%;">
@@ -89,16 +91,18 @@
       <div class="card-body" style="display: flex;flex-direction: row;">
         
         <div style="width: 100%;">
-          <h5 class="card-title" style="font-weight: 700;">Request From : {{req.user.full_name}}</h5>
+          <h5 class="card-title" style="font-weight: 700;">{{req.elder.full_name}}</h5>
           <p class="card-text">{{req.created_at}}</p>
           <!-- <p class="card-text">4.0 <i class="fa fa-star"></i></p> -->
-          <p class="card-text">CURRENT STATUS : {{req.status}}</p>
+          <p class="card-text">SUGAR : {{req.sugar}}</p>
+          <p class="card-text">PRESSURE : {{req.pressure}}</p>
+          <p class="card-text">CHOLESTEROL : {{req.cholesterol}}</p>
+          <p class="card-text">WEIGHT : {{req.weight}}</p>
+          <p class="card-text">NOTES : {{req.notes}}</p>
           <br>
           <div class="mrow" style="width: auto;justify-content: flex-end;">
-            <a href="/health-worker/hiring-requests/reject/{{req.id}}" class="btn btn-danger" style="float: right;margin-top: -25px;margin-right: 15px;">Reject</a>
-            <a href="#" class="btn btn-primary" 
-            style="float: right;margin-top: -25px;" 
-            onclick="window.location.href='/health-worker/hiring-requests/accept/{{req.id}}'">Accept</a>
+            <a href="/health-worker/delete-record/{{req.id}}" class="btn btn-danger" style="float: right;margin-top: -25px;margin-right: 15px;">Delete Record</a>
+           
           </div>
         </div>
       </div>
@@ -107,11 +111,17 @@
   {% endfor %}
   {% else %}
   <div style="display: flex;justify-content: center;align-items: center;height: 70vh;">
-      <h5><b>No Hiring Requests Found!</b></h5>
+      <h5><b>No Health Records Found!</b></h5>
   </div>
 
   {% endif %}
   <!-- Candidate Listing -->
+
+  {% if msg %}
+  <script>
+    alert('{{msg}}');
+  </script>
+  {% endif %}
 
 
   

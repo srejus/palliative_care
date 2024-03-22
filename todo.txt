@@ -19,7 +19,11 @@ HealthWorker
 -> View and Respond to hiring Requests - DONE
 -> Manage Emergency Requests(View) - DONE
 -> Send notification when request status change
--> Record elder's health status
+-> Record elder's health status - DONE
+    -> Add btn in hw home - DONE
+    -> View records page(also delete option) - DONE
+    -> Create record page - DONE
+    
 -> profile edit option - DONE
 
 
