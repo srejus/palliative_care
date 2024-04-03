@@ -31,3 +31,12 @@ HealthWorker
 
 -> Add Logout option on all Dashboard/pages-DONE
 -> Add option to select user_type on signup page - DONE
+
+
+
+-> Events Creation part
+-> Show Event Notifications to Elders
+-> Show Notification to Have meds to Elders
+-> Create reminder to have meds from health worker Dashboard
+-> when hire new cw or hw and when they accept then automatically remove the previous
+ one (just check if this is already working or not)

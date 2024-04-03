@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 
 from accounts.models import Account
 from .models import *
+from hospital.models import Emergency
+
 
 # Create your views here.
 @method_decorator(login_required,name='dispatch')
@@ -24,6 +26,19 @@ class CwhiringReqView(View):
     def get(self,request):
         reqs = RequestCwHiring.objects.filter(cw__user__user=request.user)
         return render(request,'cw_view_hiring_req.html',{'reqs':reqs})
+    
+
+@method_decorator(login_required,name='dispatch')
+class CwEmergencyReqView(View):
+    def get(self,request):
+        acc = Account.objects.get(user=request.user)
+        elder = Account.objects.filter(care_worker_id=acc.id)
+        if elder.exists():
+            elder = elder.last()
+            reqs = Emergency.objects.filter(user=elder)
+        else:
+            reqs = []
+        return render(request,'cw_view_emergency_req.html',{'reqs':reqs})
 
 
 @method_decorator(login_required,name='dispatch')

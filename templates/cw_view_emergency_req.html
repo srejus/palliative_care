@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | Book an Appointment</title>
+  <title>We Care | View Emergency Requests</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,6 +38,8 @@
   <link href="{% static 'main.css' %}" rel="stylesheet">
   <link href="{% static 'index.css' %}" rel="stylesheet">
 
+  <script defer src="{% static 'js/utils.js' %}"></script>
+
   
 </head>
 
@@ -55,11 +57,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/#why-us">Why We Care</a></li>
-          <li><a href="/accounts/profile">Profile</a></li>
+          <li><a href="/"><i class="fa fa-home"></i>&nbsp; Home</a></li>
+          <li><a href="/accounts/profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
+          <li><a href="/accounts/logout"><i class="fa fa-arrow-right"></i>&nbsp; Logout</a></li>
           
-          <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
+          <!-- <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a> -->
         </ul>
       </nav><!-- .navbar -->
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -74,29 +76,33 @@
   <main id="main" style="height:150px;">
   </main><!-- End #main -->
 <br><br>
-<h1 style="text-align: center;font-weight: 800;">Book Hospital Appointment</h1>
-  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
-    <br>
-    <form action="" method="POST" class="mform">
-      {% csrf_token %}
-      <input type="text" class="form-control" placeholder="Patient Name*" name="name" required><br>
-      <input type="number" class="form-control" placeholder="Patient's Age" name="age" required><br>
-      <input type="number" class="form-control" placeholder="Contact Number" name="phone" required><br>
-      <label for="purpose">Appointment Purpose</label>
-      <select name="purpose" class="form-control">
-        <option value="scan">Scanning</option>
-        <option value="regular_checkup">Regular Checkup</option>
-        <option value="other">Other</option>
-      </select><br>
-      <label for="scheduled_at">Appointment Scheduled At</label>
-      <input type="datetime-local" name="scheduled_at" class="form-control">
-      <br>
-      <textarea name="note" style="resize: none;height: 150px;" 
-      class="form-control" cols="30" rows="10" placeholder="Any Notes..."></textarea><br>
-      <input type="submit" value="Book an Appointment" class="form-control btn btn-primary">
-    </form>
+<h1 style="text-align: center;font-weight: 800;">View Emergency Request</h1>
 
+
+<!-- Candidate Listing -->
+{% for req in reqs %}
+  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
+
+    <div class="card" style="width: 80%;">
+      
+      <div class="card-body" style="display: flex;flex-direction: row;">
+        
+        <div style="width: 100%;">
+          <h5 class="card-title" style="font-weight: 700;">Request From : {{req.user.full_name}}</h5>
+          <p class="card-text">{{req.created_at}}</p>
+          <!-- <p class="card-text">4.0 <i class="fa fa-star"></i></p> -->
+          
+        </div>
+      </div>
+    </div>
   </div>
+  {% endfor %}
+  <!-- Candidate Listing -->
+
+
+  
+
+  
   <br><br>
   <br><br>
 
