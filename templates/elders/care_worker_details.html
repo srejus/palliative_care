@@ -58,8 +58,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/#why-us">Why We Care</a></li>
-          <li><a href="/accounts/profile">Profile</a></li>
+          <li><a href="/elders/find-care-worker">Find CareWorker</a></li>
+          <li><a href="/elders/find-medical-worker">Find HealthWorker</a></li>
+          <li><a href="/accounts/logout">Logout</a></li>
           
           <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
         </ul>
@@ -81,15 +82,18 @@
   <img src="/static/images/{{worker.profile_picture}}" class="pro-pic" alt="">
   <br>
   <h3><b>{{worker.full_name}}</b></h3><br>
-  <a href="#" class="btn btn-primary" 
+  <!-- <a href="#" class="btn btn-primary" 
             style="float: right;margin-top: -25px;" 
-            onclick="hireRequestCareWorker('{{worker.id}}')">Send Hiring Request</a>
+            onclick="hireRequestCareWorker('{{worker.id}}')">Send Hiring Request</a> -->
   <div style="width: 100%;padding: 25px;">
     <hr>
     <p>Yrs of Exp : {{worker.yrs_of_exp}}</p>
     <p>Phone : {{worker.phone}}</p>
     <p>Email : {{worker.email}}</p>
     <p style="margin-right: 25px;">{{worker.description}}</p>
+    <br><br>
+    <a href="/elders/find-care-worker/send-req/{{worker.id}}" class="btn btn-primary" 
+    style="margin-top: -25px;">Send Hiring Request</a>
   </div>
 </div>
 

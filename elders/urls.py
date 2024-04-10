@@ -5,6 +5,7 @@ urlpatterns = [
     path('',ElderHomeView.as_view()),
     path('find-care-worker',FindCareWorkerView.as_view()),
     path('find-care-worker/<int:id>',FindCareWorkerView.as_view()),
+    path('find-care-worker/send-req/<int:id>',SendCareWorkerReqView.as_view()),
     path('find-medical-worker',FindMedicalWorkerView.as_view()),
     path('find-medical-worker/<int:id>',FindMedicalWorkerView.as_view()),
     path('care-workers/request/<int:id>',SendHiringRequestToCareWorkerView.as_view()),

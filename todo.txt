@@ -40,3 +40,40 @@ HealthWorker
 -> Create reminder to have meds from health worker Dashboard
 -> when hire new cw or hw and when they accept then automatically remove the previous
  one (just check if this is already working or not)
+
+
+
+
+
+
+ ================================================================================================
+
+
+
+Elder
+
+-> Elder home navbar - Home, Find Care Worker, Find Health Worker, Logout , Request Emergency - DONE
+
+-> When Click Find CareWorker
+    -> List care workeres(pic ,name, age) - 2 btns - view , status  - DONE
+        -> view -> page with full details -> hire button -> nxt page with elder requirement form with send btn - DONE
+        -> requirements and medical details -> then send request - DONE
+    
+
+-> When Click Find HealthWorker
+    -> List care workeres(pic ,name, age) - 2 btns - view , status
+        -> view -> page with full details -> hire button -> nxt page with elder requirement form with send btn
+        -> requirements and medical details -> then send request
+
+
+
+
+
+
+
+
+
+
+
+
+

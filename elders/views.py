@@ -18,7 +18,9 @@ class ElderHomeView(View):
         if acc.user_type != 'ELDER':
             msg = "Only Elder user can access this page!"
             return redirect(f"/?msg={msg}")
-        return render(request,'elders/elder_home.html')
+        
+        msg = request.GET.get("msg")
+        return render(request,'elders/elder_home.html',{'msg':msg})
     
 
 @method_decorator(login_required, name='dispatch')
@@ -29,6 +31,24 @@ class FindCareWorkerView(View):
             worker = care_workers.get(id=id)
             return render(request,'elders/care_worker_details.html',{'worker':worker})
         return render(request,'elders/find_care_worker.html',{'care_workers':care_workers})
+    
+
+@method_decorator(login_required,name='dispatch')
+class SendCareWorkerReqView(View):
+    def get(self,request,id):
+        return render(request,'elders/elder_req.html')
+
+    def post(self,request,id):
+        cw = CareWorker.objects.get(id=id)
+        acc = Account.objects.get(user=request.user)
+
+        needs = request.POST.get("needs")
+        medical_needs = request.POST.get("medical_requirements")
+
+        RequestCwHiring.objects.create(user=acc,cw=cw,needs=needs,medical_req=medical_needs)
+
+        msg = 'Hire request sent successfully!'
+        return redirect(f"/elders/?msg={msg}")
     
 
 @method_decorator(login_required, name='dispatch')

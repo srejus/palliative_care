@@ -56,8 +56,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="/#why-us">Why We Care</a></li>
-          <li><a href="/accounts/profile">Profile</a></li>
+          <li><a href="/elders/find-care-worker">Find CareWorker</a></li>
+          <li><a href="/elders/find-medical-worker">Find HealthWorker</a></li>
+          <li><a href="/accounts/logout">Logout</a></li>
           
           <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a>
         </ul>
@@ -107,6 +108,15 @@
   </div>
   <br><br>
   <br><br>
+
+  {% if msg %}
+
+  <script>
+    alert('{{err}}');
+    window.location.href = '/';
+  </script>
+
+  {% endif %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import *
+from care_worker.models import CareWorker
+from medical_worker.models import MedicalWorker
 
 # Create your views here.
 
@@ -45,6 +47,7 @@ class SignupView(View):
         place = request.POST.get("place")
         address = request.POST.get("address")
         user_type = request.POST.get("user_type")
+        age = request.POST.get("age")
 
         # exp = request.POST.get("exp")
         # if exp == '':
@@ -67,6 +70,13 @@ class SignupView(View):
         user = User.objects.create_user(username=username,email=email,password=password1)
         acc = Account.objects.create(user=user,full_name=full_name,phone=phone,
                                      email=email,address=address,place=place,user_type=user_type)
+        
+        if user_type == 'CARE_WORKER':
+            CareWorker.objects.create(user=acc,full_name=full_name,
+                                      phone=phone,email=email,age=age,place=place)
+        elif user_type == 'HEALTH_WORKER':
+            MedicalWorker.objects.create(user=acc,full_name=full_name,
+                                         phone=phone,email=email,place=place)
 
         return redirect('/accounts/login/')
         

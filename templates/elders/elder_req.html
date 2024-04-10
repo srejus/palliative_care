@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | Find Care Worker</title>
+  <title>We Care | Elder Requirements</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -77,37 +77,20 @@
   <main id="main" style="height:150px;">
   </main><!-- End #main -->
 <br><br>
-<h1 style="text-align: center;font-weight: 800;">Find Care Workers</h1>
 
+<div class="profile-head">
+  <form action="" method="POST" style="width: 85%;">
+    <h1 style="text-align: center;"><b>Client(Elder) Requirements</b></h1><br>
+    {% csrf_token %}
+    <textarea name="needs" class="form-control" style="resize: none;height: 150px;" 
+    placeholder="Enter Your Needs...*" required></textarea><br>
 
-<!-- Candidate Listing -->
-{% for worker in care_workers %}
-  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
+    <textarea name="medical_requirements" class="form-control" style="resize: none;height: 150px;" 
+    placeholder="Enter Your Medical Requirements...*" required></textarea><br>
 
-    <div class="card" style="width: 80%;">
-      
-      <div class="card-body" style="display: flex;flex-direction: row;">
-        <div>
-          <img src="/static/images/{{worker.profile_picture}}" class="pro-pic" alt="">
-        </div>
-        <div style="width: 100%;">
-          <h5 class="card-title" style="font-weight: 700;">{{worker.full_name}}</h5>
-          <p class="card-text">age: {{worker.age}}</p>
-          <!-- <p class="card-text">4.0 <i class="fa fa-star"></i></p> -->
-          <p class="card-text">{{worker.phone}}</p>
-          <br>
-          <div class="mrow" style="width: auto;justify-content: flex-end;">
-            <a href="/elders/find-care-worker/{{worker.id}}" class="btn btn-primary" style="float: right;margin-top: -25px;margin-right: 15px;">View</a>
-            <!-- <a href="#" class="btn btn-primary" 
-            style="float: right;margin-top: -25px;" 
-            onclick="hireRequestCareWorker('{{worker.id}}')">View</a> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-  <!-- Candidate Listing -->
+    <button class="btn btn-danger">Send Hire Request</button>
+  </form>
+</div>
 
 
   
@@ -120,6 +103,7 @@
   <footer id="footer" class="footer">
 
     
+
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>We Care</span></strong>. All Rights Reserved
