@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from care_worker.models import CareWorker,RequestCwHiring
 from hospital.models import Appointment
-from medical_worker.models import MedicalWorker
+from medical_worker.models import MedicalWorker,RequestHwHiring
 from accounts.models import Account
 
 
@@ -46,6 +46,24 @@ class SendCareWorkerReqView(View):
         medical_needs = request.POST.get("medical_requirements")
 
         RequestCwHiring.objects.create(user=acc,cw=cw,needs=needs,medical_req=medical_needs)
+
+        msg = 'Hire request sent successfully!'
+        return redirect(f"/elders/?msg={msg}")
+    
+
+@method_decorator(login_required,name='dispatch')
+class SendHealthWorkerReqView(View):
+    def get(self,request,id):
+        return render(request,'elders/elder_req.html')
+
+    def post(self,request,id):
+        hw = MedicalWorker.objects.get(id=id)
+        acc = Account.objects.get(user=request.user)
+
+        needs = request.POST.get("needs")
+        medical_needs = request.POST.get("medical_requirements")
+
+        RequestHwHiring.objects.create(user=acc,hw=hw,needs=needs,medical_req=medical_needs)
 
         msg = 'Hire request sent successfully!'
         return redirect(f"/elders/?msg={msg}")
