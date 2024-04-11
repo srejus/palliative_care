@@ -10,4 +10,8 @@ urlpatterns = [
     path('manage-health-report',HwManageHealthReportView.as_view()),
     path('manage-health-report/add',HwAddHealthReportView.as_view()),
     path('delete-record/<int:id>',HwDeleteRecordView.as_view()),
+
+    path('manage-appointments',HwManageAppointmentView.as_view()),
+    path('manage-appointments/accept/<int:id>',HwAcceptAppointmentView.as_view()),
+    path('manage-appointments/reject/<int:id>',HwRejectAppointmentView.as_view()),
 ]

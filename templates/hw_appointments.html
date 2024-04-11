@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>We Care | Health Worker</title>
+  <title>We Care | View Appointments</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -38,6 +38,8 @@
   <link href="{% static 'main.css' %}" rel="stylesheet">
   <link href="{% static 'index.css' %}" rel="stylesheet">
 
+  <script defer src="{% static 'js/utils.js' %}"></script>
+
   
 </head>
 
@@ -59,7 +61,6 @@
           <li><a href="/accounts/profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
           <li><a href="/accounts/logout"><i class="fa fa-arrow-right"></i>&nbsp; Logout</a></li>
           
-          
           <!-- <a class="btn-book-a-table" href="/hospital/emergency">Request Emergency</a> -->
         </ul>
       </nav><!-- .navbar -->
@@ -75,60 +76,66 @@
   <main id="main" style="height:150px;">
   </main><!-- End #main -->
 <br><br>
-<h1 style="text-align: center;font-weight: 800;">Health Worker Dashboard</h1>
-  <div class="main-sec mrow">
+<h1 style="text-align: center;font-weight: 800;">Manage Appointments</h1>
 
-    <div class="card">
+
+<!-- Candidate Listing -->
+{% if appointments %}
+{% for req in appointments %}
+  <div class="main-sec" style="display: flex;flex-direction: column;align-items: center;">
+
+    <div class="card" style="width: 80%;">
       
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: 700;"><i class="fa fa-building"></i> View Hiring Request</h5>
-        <p class="card-text">You can find the all hiring requests from here.</p>
-        <br>
-        <a href="/health-worker/hiring-requests" class="btn btn-primary">View Now</a>
+      <div class="card-body" style="display: flex;flex-direction: row;">
+        
+        <div style="width: 100%;">
+          <h5 class="card-title" style="font-weight: 700;">{{req.patient_name}}</h5>
+          <p class="card-text">{{req.created_at}}</p>
+          <!-- <p class="card-text">4.0 <i class="fa fa-star"></i></p> -->
+          <p class="card-text">PATIENT AGE : {{req.patient_age}}</p>
+          <p class="card-text">PHONE : {{req.phone}}</p>
+          <p class="card-text">PURPOSE : {{req.purpose}}</p>
+          <p class="card-text">NOTES : {{req.note}}</p>
+          {% if req.status == 'REJECTED' %}
+          <p class="card-text">
+            <button class="btn btn-danger">STATUS : {{req.status}}</button>
+          </p>
+          {% else %}
+          <p class="card-text">
+            <button class="btn btn-success">STATUS : {{req.status}}</button>
+          </p>
+          {% endif %}
+          <br>
+          <div class="mrow" style="width: auto;justify-content: flex-end;">
+            <a href="/health-worker/manage-appointments/reject/{{req.id}}" class="btn btn-danger" style="float: right;margin-top: -25px;margin-right: 15px;">Reject</a>
+            <a href="#" class="btn btn-primary" 
+            style="float: right;margin-top: -25px;" 
+            onclick="window.location.href='/health-worker/manage-appointments/accept/{{req.id}}'">Accept</a>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: 700;"><i class="fa fa-hospital"></i> Manage Emergency</h5>
-        <p class="card-text">You can easily manage all the emergency requests done by elders and can take necessary steps</p>
-        <a href="/health-worker/manage-emergency" class="btn btn-primary">Manage</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: 700;"><i class="fa fa-id-card"></i> Manage Elder Health Report</h5>
-        <p class="card-text">You can view and create elder's health reports from here</p><br>
-        <a href="/health-worker/manage-health-report" class="btn btn-primary">Manage</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: 700;"><i class="fa fa-id-card"></i> Manage Appointments</h5>
-        <p class="card-text">You can view and manage appointments from here</p><br>
-        <a href="/health-worker/manage-appointments" class="btn btn-primary">Manage</a>
-      </div>
-    </div>
-
-
-   <!--- <div class="card">
-      <div class="card-body">
-        <h5 class="card-title" style="font-weight: 700;">Find Medical Worker</h5>
-        <p class="card-text">You can now find the Medical worker from here for all your emergencies.</p><br>
-        <a href="/elders/find-medical-worker" class="btn btn-primary">Find Now</a>
-      </div>
-    </div> -->
-
   </div>
+  {% endfor %}
+  {% else %}
+  <div style="display: flex;justify-content: center;align-items: center;height: 70vh;">
+      <h5><b>No Appointments Found!</b></h5>
+  </div>
+
+  {% endif %}
+  <!-- Candidate Listing -->
+
+
+  
+
+  
   <br><br>
   <br><br>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
-    
+   
 
     <div class="container">
       <div class="copyright">

@@ -20,22 +20,13 @@ class EmergencyView(View):
         Emergency.objects.create(user=acc)
 
         # send email noti
-        care_worker_id = acc.care_worker_id
-        medical_worker_id = acc.medical_worker_id
 
         subject = f"EMERGENCY REQUEST from {acc.full_name}!"
         content = f"New Emergency Request Created for {acc.full_name} from {acc.place} Phone: {acc.phone}\nPlease take necessary steps immediately\n\n\nThanks"
 
-        if care_worker_id:
+        medical_workers = MedicalWorker.objects.all()
+        for medical_worker in medical_workers:
             try:
-                care_worker = CareWorker.objects.get(id=care_worker_id)
-                send_mail(care_worker.user.email,subject,content)
-            except:
-                pass
-
-        if medical_worker_id:
-            try:
-                medical_worker = MedicalWorker.objects.get(id=medical_worker_id)
                 send_mail(medical_worker.user.email,subject,content)
             except:
                 pass

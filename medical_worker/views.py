@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 
 from .models import *
 from accounts.models import Account
-from hospital.models import Emergency
+from hospital.models import Emergency,Appointment
 from elders.models import HealthRecord
 
 # Create your views here.
@@ -95,3 +95,26 @@ class HwDeleteRecordView(View):
         HealthRecord.objects.filter(id=id).delete()
         msg = "Record deleted successfully!"
         return redirect(f"/health-worker/manage-health-report?msg={msg}")
+    
+
+@method_decorator(login_required,name='dispatch')
+class HwManageAppointmentView(View):
+    def get(self,request):
+        appointments = Appointment.objects.filter(hw__user__user=request.user).order_by('-id')
+        return render(request,'hw_appointments.html',{'appointments':appointments})
+    
+
+
+@method_decorator(login_required,name='dispatch')
+class HwAcceptAppointmentView(View):
+    def get(self,request,id):
+        Appointment.objects.filter(id=id).update(status='ACCEPTED')
+        return redirect("/health-worker/manage-appointments")
+    
+
+
+@method_decorator(login_required,name='dispatch')
+class HwRejectAppointmentView(View):
+    def get(self,request,id):
+        Appointment.objects.filter(id=id).update(status='REJECTED')
+        return redirect("/health-worker/manage-appointments")

@@ -80,6 +80,12 @@
     <br>
     <form action="" method="POST" class="mform">
       {% csrf_token %}
+      <label for="">Choose Medical Worker</label>
+      <select name="hw" class="form-control">
+        {% for hw in hws %}
+        <option value="{{hw.id}}">{{hw.full_name}}</option>
+        {% endfor %}
+      </select><br>
       <input type="text" class="form-control" placeholder="Patient Name*" name="name" required><br>
       <input type="number" class="form-control" placeholder="Patient's Age" name="age" required><br>
       <input type="number" class="form-control" placeholder="Contact Number" name="phone" required><br>

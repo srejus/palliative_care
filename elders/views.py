@@ -99,7 +99,8 @@ class SendHiringRequestToMedcialWorkerView(View):
 @method_decorator(login_required, name='dispatch')
 class BookAppointmentView(View):
     def get(self,request):
-        return render(request,'elders/book_appointment.html')
+        hw = MedicalWorker.objects.all()
+        return render(request,'elders/book_appointment.html',{'hws':hw})
 
     def post(self,request):
         patient_name = request.POST.get("name")
@@ -108,8 +109,11 @@ class BookAppointmentView(View):
         purpose = request.POST.get("purpose")
         note = request.POST.get("note")
         scheduled_at = request.POST.get("scheduled_at")
+        hw_id = request.POST.get("hw")
 
+        hw = MedicalWorker.objects.get(id=hw_id)
+        
         Appointment.objects.create(patient_name=patient_name,patient_age=age,note=note,
-                                   phone=phone,purpose=purpose,scheduled_at=scheduled_at)
+                                   phone=phone,purpose=purpose,scheduled_at=scheduled_at,hw=hw)
 
         return redirect("/elders")
