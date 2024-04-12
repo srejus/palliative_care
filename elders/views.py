@@ -26,7 +26,7 @@ class ElderHomeView(View):
 @method_decorator(login_required, name='dispatch')
 class FindCareWorkerView(View):
     def get(self,request,id=None):
-        care_workers = CareWorker.objects.filter(is_approved=True)
+        care_workers = CareWorker.objects.all()
         if id:
             worker = care_workers.get(id=id)
             return render(request,'elders/care_worker_details.html',{'worker':worker})
